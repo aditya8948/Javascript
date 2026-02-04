@@ -317,4 +317,160 @@ const rest1 ={
 
   // console.log(rest1.numGuest, rest2.numGuest)    o/p => 20 10
 
-  */
+  
+
+  // > for of loop => for...of is used to loop over values of an iterable.
+  // Iterables include: array  , string , sets maps
+
+
+const arr = [10, 20, 30];
+
+for (const value of arr) {
+  console.log(value);     //  o/p => 10,20,30
+}  
+
+
+// getting  index with (for .. of )
+ for( const [index , value] of arr.entries()){
+  console.log(index, value ); 
+                                    // o/p => 0 10
+                                    //        1 20
+                                    //        2 30
+ }
+
+ // for .. of with string 
+
+ for (const ch of "hello"){
+  console.log(ch);               //o/p=> h e l l o
+ }
+
+
+ // for ... of with set 
+
+ const set = new Set([1,2,3]);
+ for(const  val of set ){  
+  console.log(val);             // o/p => 1 2 3
+ }
+
+
+ // for... of with map 
+
+const map = new Map([
+  ["name" , "a"],
+  ["age", 22]
+]);
+
+for(const[key,value] of map ){
+  console.log(key,value);           // o/p => name a 
+                                    //        age 22 
+}
+
+
+
+
+// ! enhance object literal 
+
+const  subjectMarks = {
+      hindi: 20,
+      english: 18,
+      math:9
+    };
+
+ const obj1 ={
+    name: 'sunder',
+    class: 3,
+   // if  we want to add subjectamarks in obj1 
+  //  subjectMarks: subjectMarks  
+   // also we can write it like 
+   subjectMarks,
+  };
+  console.log(obj1);
+
+  
+
+  //> optionnal chaining => optional chaining safely acces properties or method withoud throwing an
+  // erroe if something is null or undefined 
+  // instead of crshing it return undefined 
+  // Optional chaining allows safe access to nested object properties and methods 
+  // without throwing errors when values are null or undefined
+
+  const user = {};
+  console.log(user.address.city) // typeerror
+
+  because user.address is undefined , you cant  access .city on undefined
+
+  // old method to check 
+  if (user &&  user.address && user.address.city){
+
+    console.log(user.address.city);
+  }
+
+  // optional chaining solutionn 
+   consolelog(user.address?.city)   // undefined 
+
+   // how it work, 
+   obj?.prop 
+   means => if obj exist , get prop . otherwise return undefined 
+   js stops immediately if it find null or undefined 
+
+   // > optionnal chaining with method 
+
+   user.sayHi?.();
+   if sayHi exist => called 
+   if not => nothing happens (return undefined )
+
+   // > optional chaining with array 
+   const user = [];
+   ContentVisibilityAutoStateChangeEvent.log(user[0]?.name);
+
+   // combine with nullish coalescinng (??)
+   const coty = user.address?.city ?? "not available ";
+   ?. => safe access
+   ?? => default only for null / undefinned */
+  //  ------------------------------------------------------------------------
+
+
+  // !object looping => object are not interable like array ,you must loop over keys / values / entries 
+//Objects are looped by iterating over their keys, values, 
+// or entries using for...in or Object.keys/values/entries.
+  
+  const user ={
+    name: "a",
+    age: 22, 
+    city: "delhi",
+    user1: {
+      name: "b",
+      age: 24
+    }
+  };
+// for..in is a classy way to  do that 
+  for (const key in user ){
+    // console.log(key , user[key]);     
+                                                // o/p  => name a
+                                                //   age 22
+                                                //   city delhi 
+                                                //   user1 { name: 'b', age: 24 }
+
+  }
+
+  // object.keys()
+  Object.keys(user).forEach(key => {
+    // console.log(key , user[key]);      // same o/p
+  }) 
+
+
+  // object.values()
+  Object.values(user).forEach(value => {
+    console.log(value);
+// o/p => only values get printed 
+// a
+// 22
+// delhi
+// { name: 'b', age: 24 }
+  });
+
+
+  // object.entries() (best )
+  for (const [key, value] of Object.entries(user)){
+    console.log(key ,value);
+  }
