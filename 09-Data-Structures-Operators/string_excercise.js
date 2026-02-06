@@ -24,7 +24,7 @@ for (const flight of flights.split("+")) {
   .replaceAll('_', ' ')
   .trim()} ${from.slice(0, 3).toUpperCase()} ${to
   .slice(0, 3)
-  .toUpperCase()} (${time.replace(':', 'h')})`;
+  .toUpperCase()} (${time.trim().replace(':', 'h')})`;
 
 
   console.log(output);
