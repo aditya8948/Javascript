@@ -426,7 +426,7 @@ const  subjectMarks = {
    // combine with nullish coalescinng (??)
    const coty = user.address?.city ?? "not available ";
    ?. => safe access
-   ?? => default only for null / undefinned */
+   ?? => default only for null / undefinned 
   //  ------------------------------------------------------------------------
 
 
@@ -474,3 +474,190 @@ const  subjectMarks = {
   for (const [key, value] of Object.entries(user)){
     console.log(key ,value);
   }
+
+
+
+  //-------------------------------------------------------------------------
+
+  // !! set => it is a collection of unique values (no duplicates Ever)
+  // why we need it => 
+    // > only unique value 
+    // > fast lookup
+
+  // create set => 
+     const mySet = new Set();
+
+  
+  const s = new Set([1,2,2,3])
+  console.log(s);     // o/p => Set(3) { 1, 2, 3 }
+
+  console.log(new Set("jonas")); // o/p => Set(5) { 'j', 'o', 'n', 'a', 's' }
+
+// basic operations
+// > add 
+  mySet.add(5);
+  mySet.add(6);
+  mySet.add(7);
+
+// console.log(mySet);    // o/p  => et(1) { 5 , 5, ,7 }
+
+// > check existence (has )
+// console.log(mySet.has(5));    // o/p => true
+
+// > delete => 
+  // console.log(mySet.delete(6));  // o/p  => true 
+  // console.log(mySet);            // o/p  => Set(2) { 5, 7 }
+
+// > clear all 
+//  mySet.clear();
+ console.log(mySet);   //  {}
+
+ // check size
+ console.log(mySet.size);  // o/p => 3
+
+
+ // > looping over set 
+
+ // for...of (most common)
+ for(const val of mySet ){
+  console.log(val);
+ }
+
+
+ // convert set <=> array 
+
+ //  array to set  (remove duplicates )
+
+ const arr = [1,2,3,4,1,2,1,3];
+ const unique = new Set(arr);      
+ console.log(unique);              // o/p=  { 1, 2, 3, 4 }
+
+//  set  => array 
+const uniqueArr = [...unique]; 
+console.log(uniqueArr);       // o/p => [ 1, 2, 3, 4 ] 
+
+
+// some new opration on set 
+
+const italianFoods = new Set([
+  'pasta',
+  'gnocchi',
+  'tomatoes',
+  'olive oil',
+  'garlic',
+  'basil',
+]);
+
+const mexicanFoods = new Set([
+  'tortillas',
+  'beans',
+  'rice',
+  'tomatoes',
+  'avocado',
+  'garlic',
+]);
+
+// > intersection (return common item of set )
+const commonFood = new Set(italianFoods.intersection(mexicanFoods));
+console.log([...commonFood]); // o/p => [ 'tomatoes', 'garlic' ]
+
+// >  union (return all set item , dublicates only one time 
+
+const allItem = italianFoods.union(mexicanFoods);
+console.log([...allItem]);  // o/p => ['pasta','gnocchi','tomatoes','olive oil','garlic','basil','tortillas','beans','rice','avocado']
+
+// > difference (return all element of 1st set which are not present in 2nd set )
+ 
+const uniqueItalianFood = italianFoods.difference(mexicanFoods);
+console.log([...uniqueItalianFood]);    // o/p -> [ 'pasta', 'gnocchi', 'olive oil', 'basil' ]
+
+
+const uniqueMexicanFoods = mexicanFoods.difference(italianFoods);
+console.log([...uniqueMexicanFoods]);    // o/p -> [ 'tortillas', 'beans', 'rice', 'avocado' ]
+
+//> symmetricDifference (return non common item of both )
+
+const uniqueItalianMexicanFoods = italianFoods.symmetricDifference(mexicanFoods);
+console.log([...uniqueItalianMexicanFoods]); // o/p -> ['pasta', 'gnocchi', 'olive oil', 'bbasil', 'tortillas', 'beans', 'rice', 'avacado']
+
+
+
+
+// ----------------------------------------------------------------------------
+// !! map => it is a collection if key value  pair , like an objet but safer in many cases.\
+//      Map = dynamic key–value store, Object = structured data
+// A Map is a built-in JavaScript object that stores key–value
+//  pairs with keys of any type and preserves insertion order.
+// problem with object => 
+  // - keys are converted to string 
+  // - prototype pollution 
+  // - order quirks 
+  // and map fix all thesse 
+
+  const userMap = new Map([
+    ["name" , "a"],
+    ["age" ,22]
+  ]);
+
+//basic operation 
+
+// -> set value :
+userMap.set("city" ,["delhi" , "up"]);
+console.log(userMap);  // o/p => Map(3) { 'name' => 'a', 'age' => 22, 'city' => [ 'delhi', 'up' ] }
+
+
+// -> get value 
+console.log(userMap.get("city"));     // o/p => [ 'delhi', 'up' ]
+
+
+// check key 
+console.log(userMap.has("city"));   // o/p => true 
+
+// delete key 
+
+userMap.delete("city");
+
+// check size 
+console.log(userMap.size);     // return total no. of keys =>2 
+
+
+// => looping over map
+
+for(const [key,value] of userMap){
+  console.log(key,value);            // o/p=> name a 
+}                                    //       age 22 
+
+
+// to print key/ value / entries 
+
+console.log(userMap.keys());       //  { 'name', 'age' }
+console.log(userMap.values());     //   { 'a', 22 }
+console.log(userMap.entries());   //   { [ 'name', 'a' ], [ 'age', 22 ] }
+
+
+// => convert object <-> map
+
+//1 object -> map
+const map = new Map(Object.entries(obj));
+
+//2 map -> object 
+const obj =  Object.fromEntries(map); 
+
+*/
+
+// little quiz
+ const question =  new Map ([
+  ['question' , 'which is yourr favoriye language'],
+  [1, 'c'],
+  [2, 'java'],
+  [3, 'javaScript'],
+  ['correct' , 3],
+  [true, 'correct'],
+  [false, 'try again']
+ ]);
+//  console.log(question);
+
+for(const [key , values] of question){
+  if(typeof key === 'number') 
+    console.log(`Answer ${key}: ${values}`);
+}
