@@ -643,7 +643,7 @@ const map = new Map(Object.entries(obj));
 //2 map -> object 
 const obj =  Object.fromEntries(map); 
 
-*/
+
 
 // little quiz
  const question =  new Map ([
@@ -661,3 +661,155 @@ for(const [key , values] of question){
   if(typeof key === 'number') 
     console.log(`Answer ${key}: ${values}`);
 }
+
+
+
+
+
+// -----------------------------------------------------------------------------------------
+
+// !! string => it is the  immutable sequence oof  character, these are stored as primitive values , pass ed by value , operration create new string ,
+// trings in JavaScript are immutable primitive values, and most string operations 
+//     return new strings rather than modifying the original.
+
+const str =  'hello ';
+
+// important properties 
+
+// -> length 
+console.log(str.length);
+
+// case conversion 
+console.log(str.toUpperCase());     // o/p => HELLO
+console.log(str.toLowerCase());      // o/p  => hello
+
+
+//->  slicinng (support -ve value also)
+
+console.log(str.slice(2));       // llo 
+console.log(str.slice(2,-1))    // llo
+console.log(str.slice(0,3))     //hel
+console.log(str.slice(1))       //ello
+
+// -> search 
+
+console.log(str.includes("he"));    // true 
+console.log(str.indexOf("l"));      // 2
+
+// -> split and join
+
+const word = "hello world".split(" ");    // split the string on the basis  of  given argument 
+console.log(word);    // o/p  => [ 'hello', 'world' ]
+
+const name = 'aditya pandey ';
+
+const [firstName , lastName] = name.split(' ');
+console.log(firstName,lastName);
+
+const capitalizename = function(item){
+  const name = item.split(" ");
+  const userName = [];
+  for(const ch of name ){
+    if(ch === "") continue;   // skip extra space 
+    userName.push(ch[0].toUpperCase() + ch.slice(1));
+  }
+  console.log(userName.join(' '));
+}
+
+capitalizename("jonas schemedtmann");
+capitalizename("if  you are looking for any job you are at right plavce ");
+
+// strings + loops 
+// for....of (best  way )
+
+for(const ch of str){
+  console.log(ch);
+}
+
+
+
+
+// most used string patter  
+
+//1 -> frequency counting
+
+const freq ={};
+
+for(const ch of str){
+  freq[ch] = (freq[ch] || 0) + 1;
+}
+console.log(freq);     // { h: 1, e: 1, l: 2, o: 1, ' ': 1 }
+
+// 2-> reverse string 
+
+console.log(str.split("").reverse().join(""));   //  olleh
+
+
+// 3-> string template literal 
+
+const name = "a";
+console.log(`hello ${name}`);
+
+
+// fix capitalization in name
+
+const passengerName  = "AdiTyA "   // Aditya 
+const passengerLower = passengerName.toLowerCase();
+const correctName = passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(correctName);   // Aditya 
+
+
+// -> replace 
+
+
+const announcement ='all passenger go to boarding door 23, Boarding door 23!';
+
+console.log(announcement.replace('door' , 'gate')) // it only replace first occurance
+
+const comment = 'shubham has 32 mark in math but shubham fails in hindi '
+
+console.log(comment.replaceAll('shubham','boy'));  // o/p => boy has 32 mark in math but boy fails in hindi 
+
+
+// -> boolean 
+
+
+const plane = 'Airbbus A320neo';
+console.log(plane.includes("A320"));
+console.log(plane.includes('boeing'));
+console.log(plane.startsWith('Air'));
+
+if(plane.startsWith('Air') && plane.endsWith('neo')){
+  console.log("part of new airbus family");
+}
+
+// practice question
+
+const checkBaggage = function(items){
+  const baggage = items.toLowerCase();
+  if(baggage.includes('knife') || baggage.includes('gun')){
+    console.log('you are not allowed to board ');
+  }
+  else console.log('welcome');
+}
+
+checkBaggage('i have  a laptop  and some food ');  // welcome 
+checkBaggage("i have gun for  my safeety ");      // you are not allowed 
+checkBaggage('i have knife to cut the food ');  // you are not allowed 
+
+*/
+
+
+// -> padding 
+const message = 'hi aditya';
+console.log(message.padStart(20,'+'));  // o/p = +++++++++++hi aditya
+console.log(message.padEnd(20,'+'));     // o/p = hi aditya+++++++++++
+
+const maskCreditCard = function(number) {
+  const str  = number + '';
+  const  last  = str.slice(-4);
+  return last.padStart(str.length,'*');
+};
+
+console.log(maskCreditCard(22221457));
+console.log(maskCreditCard(5486972));
