@@ -263,7 +263,7 @@ o/p => ReferenceError: Cannot access 'b' before initialization
 
 
 ------------------------------------------------------------------------------
-!THIS KEYWORD => THIS refer to the object that call the function and ots value is determined at runtime
+!THIS KEYWORD => THIS refer to the object that call the function and its value is determined at runtime
     - THIS  is a reference to the object  that is executing the current function , but THIS  is not decided where funtoion is written , it decided how thwe funtion is called 
     - arrow function dont bind THIS , regular funtion do
     - THIS refer to the object that call the funtion and its value is determined at runtime 
@@ -359,7 +359,7 @@ Function
 
 shallow copy and deep  copy 
 
-Shallow copy => new object , but nested object are still shared (onyl the first  leave;  is copied )
+Shallow copy => new object , but nested object are still shared (onyl the first  leave  is copied )
 
 example => 
 

@@ -49,7 +49,7 @@ const restaurant = {
 // ---------------------------------------------------------------------------------------------------------------------------------------
 
 
-// !! array destructuring => unpacking values of srray into variables 
+// !! array destructuring => unpacking values of array into variables 
       -Take values out of the array, left to right, and put them into variables
 
 // example 
@@ -423,7 +423,7 @@ const  subjectMarks = {
    const user = [];
    ContentVisibilityAutoStateChangeEvent.log(user[0]?.name);
 
-   // combine with nullish coalescinng (??)
+   // combine with nullis h coalescinng (??)
    const coty = user.address?.city ?? "not available ";
    ?. => safe access
    ?? => default only for null / undefinned 
