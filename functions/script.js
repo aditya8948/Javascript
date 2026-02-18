@@ -92,7 +92,7 @@ const greeter = greet('hey'); //now the returning function get store in greeter
 greeter('abhay')      // we are calling greeter function which is return by the greeet function
 greeter('alok');      // o/p => hey alok
 
-*/
+
 
 // ! call and apply method (using this keyword )
 
@@ -196,3 +196,55 @@ const addVAT2 = addTax(.23);
 console.log(addVAT2(100)); // o/p => 123
 
 
+*/
+
+// !IIFE => immediately invoke function expression
+// => function that runs immediately as soon as it created and only run once 
+// it is use to create private scope , no use most but  still use to understand old code , one time setup code , library pattern s
+// => extra paranthese  is needed because js need to unnderstand this is functionn expression not declaration
+// (function () {
+//     var x =10;
+//     console.log(x);
+// }) ();
+
+// // arrow function
+
+// (() => {
+//     console.log("run immediately");
+// }) ();
+
+
+// ! closure => variable environment attached to the function , exactly as it was at the time at the time and place the functionn was created 
+// a functionn has access to the VE of the execution contxt in which it was created 
+// a closure gives a functionn access to all the variable of its parent function , even after that parent function
+// has returned . the functionn keeps a reference to its outer scope which preseved the scope chain throughhout time 
+// -> A closure make sure that a function dosent loose connection to variables that existed at the function birth place 
+// it keep private  variables, remember state , avoid global variable 
+// we do not have to manually create closure ,
+//  this is a js feature that  happes automatically , we cant even acccess closed over variable explicitly . a closure is not a tangiable javascript object 
+
+const secureBooking = function (){  
+// Inside secureBooking:
+// passengerCount is created → 0
+// An inner function is created
+// That inner function is returned
+    let passengerCount = 0 ;
+    return function(){
+        passengerCount++;
+        console.log(`${passengerCount} passengers`)
+    }
+}
+// why passenger count dont disappear after booking function completed ?
+// js keeps passengercount alive  in memory , this callled closure 
+// as long as the innner functionn exist , its outer variable stay  live 
+
+const booker = secureBooking();
+
+booker();  o/p => 1
+booker();  o/p => 2
+booker();  o/p => 3
+
+// what booker function doing ?
+// booker is now inner function and hidden reference to passengercount
+
+// when booker is called passenger count  get incremented and print and again when it calll the same proceesss repeat, value is remembered btw call 
