@@ -698,7 +698,7 @@ const heaviestWeight = (breeds.filter(activity => activity.activities.includes('
                              .map(weight => weight.averageWeight))
 console.log(Math.max(...heaviestWeight));
                             
-*/ 
+
 
 //--------------------------------------------------
 
@@ -736,3 +736,184 @@ console.log(movements)   // o/p=> [-650, -400, -130, 70, 200, 450, 1300, 3000]
 
 movements.sort((a ,b) => b - a);
 console.log(movements); //o/p => [3000, 1300, 450, 200, 70, -130, -400, -650]
+
+*/
+
+// ------------------------------------------------------------------------------------
+
+
+// array grouping = means putting array element into  bucket based on  a rule  
+
+// using Object.groupBy
+
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const grouped = Object.groupBy(movements , move => move>0 ? 'deposit' : 'withdraw' );
+
+console.log(grouped);
+// o/p => 
+// grouped ={
+// deposit: [200, 450, 3000, 70, 1300]
+// withdraw: [-400, -650, -130]
+// }
+
+const groupActivity = Object.groupBy(accounts, account => {
+  const movement = account.movements.length;
+
+  if(movement>=8) return 'very active';
+  if(movement>=7) return 'active';
+  if(movement>=2) return 'moderate';
+  return 'inactive';
+})
+console.log(groupActivity);
+
+
+
+// more ways to create and fill array 
+
+// empty array and fill method 
+const  x = new Array(7);
+// console.log(x);
+
+// Array.fill(value,strtingIndex,endingIndex)
+// x.fill(1);    // o/p => [1, 1, 1, 1, 1, 1, 1]
+
+x.fill(1,3,5)
+console.log(x)  //o/p => [empty × 3, 1, 1, empty × 2]
+
+// array.from
+
+const y = Array.from({length: 7}, () => 1);
+console.log(y);
+
+labelBalance.addEventListener('click' , function() {
+  const movementsUI =Array.from(
+    document.querySelectorAll('.movements__value'), el => Number(el.textContent)
+  );
+  console.log(movementsUI)
+})
+
+
+// -------------------------------------------------------------
+
+// non destructive alternative : toReverse, toSorted, toSpliced
+
+  // as reverse(),sort(),splice() mutate the orignal array toreverse(),tosorted(),tosplice() are the 
+  // undestructive method which do the same work but without the orignal array 
+
+  const reverseMov = movements.toReversed();
+  console.log(reverseMov);  // o/p => [1300, 70, -130, -650, 3000, -400, 450, 200] , no orignal string is got mutated 
+  //and both two method work same 
+
+  // with method 
+
+  // if we have to change some value 
+
+  movements[1] = 2000;
+  console.log(movements)//  [200, 2000, -400, 3000, -650, -130, 70, 1300]
+
+  // syntax => Array.with(index,value)
+  const newMovements = movements.with(1,2000); // does  not mutate the orignal array 
+
+  console.log(newMovements)  //[200, 2000, -400, 3000, -650, -130, 70, 1300]
+
+
+
+  // --------------------------------------------------------------------------------
+/*
+! WHICH ARRAY METHOD TO USE AND WHEN ?
+
+ => to mutate orignal 
+  - add to orignal 
+  .push (end)
+  .unshift(strt)
+
+ - remove from orignal 
+ .pop (end)
+ .shift(strt)
+ .splice(any)
+
+ -other         undestructive
+ .reverse       .toReverse
+ .sort          .toSort
+ .fill          .tosplice
+
+
+ => a new array  based on orignal 
+
+ .map
+ .filter
+ .slice
+
+ -with one item replace
+ .with
+
+ -flattened
+ .flat
+ .flatmap
+
+ -joining two array
+ .concat
+
+
+ => an array index 
+ -based on thhe value 
+ .indexof
+
+ -based on test condition 
+ .findIndex
+ .findLastIndex
+
+ => an array element
+-based on test  condition
+.find
+.findLast
+
+-based on position
+.at
+
+
+=> know if array includes
+
+-based on the  value
+.includes
+
+-based on test condition
+.some
+.every
+
+
+=> a new string 
+
+-based on separator
+
+.join
+
+
+=> to transform to value 
+- based on accumulator 
+.reduce => boil down thhe array to single value off any type 
+
+=> to just loop
+
+.forEach
+
+
+// more array tools 
+
+
+=> grouping an array by categories 
+object.groupBy
+
+=> creating a new arrray from scratch
+Array.from
+
+=> joinnig 2 or more array
+[...arr1,...arr2]
+
+=> creating new array contaiining unique value from arr
+[...new Set(arr)]
+
+=> creating new array containig unique element that are present in both arr1 and arr 2
+[...new set(arr1).intersection(new set(arr2))]
