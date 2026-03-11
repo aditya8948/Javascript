@@ -499,7 +499,7 @@ ford.brake();               // ford is going at 135 km/h
 ford.speedUS = 50;
 console.log(ford);          // carC1 { make: 'ford', speed: 135, _speedUS: 80 }
 
-
+//  
 
 // -----------------------------------------------------------------------------
 
