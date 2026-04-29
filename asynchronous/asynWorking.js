@@ -1,3 +1,4 @@
+/*
 // This function is synchronous.
 // It blocks the call stack until the loop finishes.
 function timeConsumingLoop(label) {
@@ -60,3 +61,25 @@ console.log('Program finished synchronous code');
 // Program finished synchronous code
 // 0ms timer callback is now running
 // 5-second timer callback is now running
+
+*/
+
+//////////////////////////////////////////////////////////////////////////
+
+// setinterval => call the callback function in given time again and again
+
+// let x = setInterval(function exec() {
+//   console.log('hi');
+// }, 0);
+
+// clearInterval(x); // to stop the setinterval 
+
+  let count = 0;
+let y = setInterval(() => {
+  console.log(count);
+  count++;
+  if(count == 15) clearInterval(y);
+},300)
+console.log(y);
+
+
